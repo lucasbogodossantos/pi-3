@@ -1,0 +1,105 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #eafaf1 url("imagens/fundo-nutricao.jpg") no-repeat center center fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+
+/* Cabeçalho */
+header {
+  background-color: #2d6a4f;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.logo {
+  height: 50px;
+}
+
+nav ul.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 25px;
+}
+
+nav ul.menu li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav ul.menu li a:hover {
+  color: #95d5b2;
+}
+
+/* Conteúdo principal */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 20px;
+}
+
+.container {
+  background-color: #ffffffcc;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+h1 {
+  color: #2d6a4f;
+  margin-bottom: 20px;
+}
+
+.imagem-topo {
+  width: 80px;
+  margin: 0 auto 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 15px;
+  text-align: left;
+}
+
+label {
+  color: #1b4332;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"] {
+  padding: 10px;
+  border: 1px solid #cce3d2;
+  border-radius: 6px;
+  background-color: #f8fff9;
+}
+
+button {
+  background-color: #52b788;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #40916c;
+}

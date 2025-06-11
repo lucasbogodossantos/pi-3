@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Dados Antropométricos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="imagens/logo.png" alt="Logo da Clínica" class="logo">
+    <nav>
+      <ul class="menu">
+        <li><a href="#">Início</a></li>
+        <li><a href="#">Agendamentos</a></li>
+        <li><a href="#">Clientes</a></li>
+        <li><a href="#">Ficha Anamnese</a></li>
+        <li><a href="#">Antropometria</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1>Dados Antropométricos</h1>
+
+      <form action="http://localhost:3000/Clinica/AntropometriaServlet" method="post">
+
+        <h3>Medidas Básicas</h3>
+        <label for="altura">Altura (m):</label>
+        <input type="number" step="0.01" id="altura" name="altura_m" required>
+
+        <label for="peso">Peso Atual (kg):</label>
+        <input type="number" step="0.1" id="peso" name="peso_atual_kg" required>
+
+        <label for="imc">IMC:</label>
+        <input type="number" step="0.1" id="imc" name="IMC">
+
+        <label for="gordura">Percentual de Gordura (%):</label>
+        <input type="number" step="0.1" id="gordura" name="%_de_gordura">
+
+        <h3>Circunferências</h3>
+        <label for="cintura">Cintura (cm):</label>
+        <input type="number" step="0.1" id="cintura" name="circunferencia_cintura">
+
+        <label for="abdome">Abdômen (cm):</label>
+        <input type="number" step="0.1" id="abdome" name="circunferencia_abdome">
+
+        <label for="braco">Braço (cm):</label>
+        <input type="number" step="0.1" id="braco" name="circunferencia_braco">
+
+        <label for="quadril">Quadril (cm):</label>
+        <input type="number" step="0.1" id="quadril" name="quadril">
+
+        <h3>Dobras Cutâneas</h3>
+        <label for="tricipital">Tricipital (mm):</label>
+        <input type="number" step="0.1" id="tricipital" name="dobra_cutanea_tricipital">
+
+        <label for="bicipital">Bicipital (mm):</label>
+        <input type="number" step="0.1" id="bicipital" name="dobra_cutanea_bicipital">
+
+        <label for="subescapular">Subescapular (mm):</label>
+        <input type="number" step="0.1" id="subescapular" name="dobra_cutanea_subescapular">
+
+        <label for="suprailiaca">Suprailíaca (mm):</label>
+        <input type="number" step="0.1" id="suprailiaca" name="dobra_cutanea_suprailiaca">
+
+        <h3>Classificação</h3>
+<label for="classificacao">Classificação (baseada nas dobras cutâneas):</label>
+<select id="classificacao" name="classificacao">
+  <option value="dobra_cutanea_tricipital">Dobra Cutânea Tricipital</option>
+  <option value="dobra_cutanea_bicipital">Dobra Cutânea Bicipital</option>
+  <option value="dobra_cutanea_subescapular">Dobra Cutânea Subescapular</option>
+  <option value="dobra_cutanea_suprailiaca">Dobra Cutânea Suprailíaca</option>
+</select>
+
+
+        <button type="submit">Salvar Dados</button>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

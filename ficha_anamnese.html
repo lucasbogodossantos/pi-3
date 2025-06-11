@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Ficha de Anamnese</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="imagens/logo.png" alt="Logo da Clínica" class="logo">
+    <nav>
+      <ul class="menu">
+        <li><a href="#">Início</a></li>
+        <li><a href="#">Agendamentos</a></li>
+        <li><a href="#">Clientes</a></li>
+        <li><a href="#">Relatórios</a></li>
+        <li><a href="#">Ficha Anamnese</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1>Ficha de Anamnese</h1>
+
+      <form action="http://localhost:3000/Clinica/FichaServlet" method="post">
+        <h3>Dados Clínicos</h3>
+
+        <label for="medicamento">Faz uso de medicamentos?</label>
+        <input type="text" id="medicamento" name="medicamento" placeholder="Qual?">
+
+        <label for="tempo_de_uso">Tempo de uso:</label>
+        <input type="text" id="tempo_de_uso" name="tempo_de_uso">
+
+        <label for="efeitos">Efeitos colaterais:</label>
+        <textarea id="efeitos" name="efeitos"></textarea>
+
+        <h3>Histórico Individual</h3>
+
+        <label>Faz dieta atualmente?</label>
+        <div>
+          <input type="radio" name="faz_dieta" value="sim" id="dieta_sim">
+          <label for="dieta_sim">Sim</label>
+
+          <input type="radio" name="faz_dieta" value="nao" id="dieta_nao">
+          <label for="dieta_nao">Não</label>
+        </div>
+
+        <label>Problemas digestivos:</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="digestao[]" value="pirose"> Pirose</label>
+          <label><input type="checkbox" name="digestao[]" value="azia"> Azia</label>
+          <label><input type="checkbox" name="digestao[]" value="refluxo"> Refluxo</label>
+          <label><input type="checkbox" name="digestao[]" value="vomitos"> Vômitos</label>
+          <label><input type="checkbox" name="digestao[]" value="nauseas"> Náuseas</label>
+          <label><input type="checkbox" name="digestao[]" value="odinofagia"> Odinofagia</label>
+          <label><input type="checkbox" name="digestao[]" value="dispepsia"> Dispepsia</label>
+          <label><input type="checkbox" name="digestao[]" value="constipacao"> Constipação intestinal</label>
+          <label><input type="checkbox" name="digestao[]" value="diarreia"> Diarreia</label>
+          <label><input type="checkbox" name="digestao[]" value="outro"> Outro</label>
+        </div>
+
+        <label for="grau_de_ansiedade">Grau de ansiedade:</label>
+        <select id="grau_de_ansiedade" name="grau_de_ansiedade">
+          <option value="baixo">Baixo</option>
+          <option value="medio">Médio</option>
+          <option value="alto">Alto</option>
+        </select>
+
+        <button type="submit">Enviar Ficha</button>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

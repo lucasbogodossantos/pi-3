@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Clínica Nutricionista</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #eefdf5;
+      font-family: Arial, sans-serif;
+    }
+
+    form {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      min-width: 300px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c7a4b;
+      margin-bottom: 30px;
+    }
+
+    label {
+      font-weight: bold;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #4caf84;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #43a075;
+    }
+  </style>
+</head>
+<body>
+  <form action="http://localhost:3000/Clinica/LoginServlet" method="post">
+    <h1>Login do Sistema</h1>
+
+    <label for="usuario">Usuário:</label>
+    <input type="text" id="usuario" name="usuario" required>
+
+    <label for="senha">Senha:</label>
+    <input type="password" id="senha" name="senha" required>
+
+    <button type="submit">Entrar</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,51 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Consulta {
+  id           Int      @id @default(autoincrement())
+  paciente_id  Int
+  paciente     Cliente @relation(fields: [paciente_id], references: [id])
+  data         DateTime
+  observacoes  String?
+}
+
+model Cliente {
+  id              Int        @id @default(autoincrement())
+  nome            String?
+  data_nascimento DateTime?
+  sexo            Sexo?
+  email           String?
+  telefone        String?
+  endereco        String?
+  cpf             String?
+  consultas       Consulta[]
+
+}
+
+model Agendamento {
+  id             Int       @id @default(autoincrement())
+  data           DateTime
+  horario        String
+  observacao     String?    // Opcional
+  //cliente       Cliente   @relation(fields: [clienteId], references: [id])
+  clienteId     Int
+  criado_em      DateTime   @default(now())
+  atualizado_em  DateTime   @updatedAt
+
+  // Relacionamento reverso (opcional, se você quiser ver os agendamentos a partir do paciente)
+  @@index([clienteId], name: "idx_cliente_agendamentos")
+}
+
+enum Sexo {
+  MASCULINO
+  FEMININO
+  OUTRO
+}
