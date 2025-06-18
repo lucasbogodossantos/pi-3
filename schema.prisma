@@ -1,0 +1,136 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Cliente {
+  id              Int        @id @default(autoincrement())
+  nome            String?
+  data_nascimento DateTime?
+  sexo            Sexo?
+  email           String?
+  telefone        String?
+  endereco        String?
+  cpf             String?
+  consultas       Consulta[]
+}
+
+model Consulta {
+  id           Int       @id @default(autoincrement())
+  paciente_id  Int
+  paciente     Cliente   @relation(fields: [paciente_id], references: [id])
+  data         DateTime
+  hora         DateTime? // Prisma não tem tipo separado para hora, usa DateTime
+  observacoes  String?
+
+  // Relacionamentos reversos
+  anamnese                    Anamnese[]
+  avaliacao_bioquimica        AvaliacaoBioquimica[]
+  avaliacao_consumo_alimentar AvaliacaoConsumoAlimentar[]
+  dados_clinicos              DadosClinicos[]
+  dieta                       Dieta[]
+  habitos_vida                HabitosVida[]
+}
+
+model Agendamento {
+  id             Int       @id @default(autoincrement())
+  data           DateTime
+  horario        String
+  observacao     String?
+  clienteId      Int
+  criado_em      DateTime   @default(now())
+  atualizado_em  DateTime   @updatedAt
+
+  @@index([clienteId], name: "idx_cliente_agendamentos")
+}
+
+model Anamnese {
+  id                     Int       @id @default(autoincrement())
+  consulta_id            Int?
+  fumante                Boolean?
+  etilista               Boolean?
+  patologias             String?
+  medicamentos           String?
+  alergias               String?
+  sono                   String?
+  emocional              String?
+  diurese                String?
+  informacoes_adicionais String?
+  consulta               Consulta? @relation(fields: [consulta_id], references: [id])
+
+  @@index([consulta_id])
+}
+
+model AvaliacaoBioquimica {
+  id                Int       @id @default(autoincrement())
+  consulta_id       Int?
+  colesterol_total  Decimal?  @db.Decimal(5,2)
+  hdl               Decimal?  @db.Decimal(5,2)
+  ldl               Decimal?  @db.Decimal(5,2)
+  triglicerideos    Decimal?  @db.Decimal(5,2)
+  glicemia          Decimal?  @db.Decimal(5,2)
+  outros            String?
+  consulta          Consulta? @relation(fields: [consulta_id], references: [id])
+
+  @@index([consulta_id])
+}
+
+model AvaliacaoConsumoAlimentar {
+  id                    Int       @id @default(autoincrement())
+  consulta_id           Int?
+  frequencia_alimentar  String?
+  recordatorio_24h      String?
+  horario_das_refeicoes String?
+  consulta              Consulta? @relation(fields: [consulta_id], references: [id])
+
+  @@index([consulta_id])
+}
+
+model DadosClinicos {
+  id                       Int       @id @default(autoincrement())
+  consulta_id              Int?
+  peso                     Decimal?  @db.Decimal(5,2)
+  altura                   Decimal?  @db.Decimal(4,2)
+  imc                      Decimal?  @db.Decimal(5,2)
+  circunferencia_abdominal Decimal?  @db.Decimal(5,2)
+  percentual_gordura       Decimal?  @db.Decimal(5,2)
+  percentual_muscular      Decimal?  @db.Decimal(5,2)
+  consulta                 Consulta? @relation(fields: [consulta_id], references: [id])
+
+  @@index([consulta_id])
+}
+
+model Dieta {
+  id                Int       @id @default(autoincrement())
+  consulta_id       Int?
+  objetivo          String?
+  orientacoes_gerais String?
+  plano_alimentar   String?
+  suplementos       String?
+  consulta          Consulta? @relation(fields: [consulta_id], references: [id])
+
+  @@index([consulta_id])
+}
+
+model HabitosVida {
+  id              Int       @id @default(autoincrement())
+  consulta_id     Int?
+  tabagismo       Boolean?
+  alcool          Boolean?
+  atividade_fisica String?
+  horas_sono      Int?
+  estresse        Boolean?
+  consulta        Consulta? @relation(fields: [consulta_id], references: [id])
+
+  @@index([consulta_id])
+}
+
+enum Sexo {
+  MASCULINO
+  FEMININO
+  OUTRO
+}
